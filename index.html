@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, inital-scale=1.0">
+        <!--allows mobiles devices to adjust the width propoerly-->
+
+        <title>Infinite Tetris</title> 
+        <!--will be the name of the website-->
+
+        <link rel="stylesheet" href="style.css">
+        <!--links to the css file and implements the styles here-->
+
+        <script src="script.js" defer></script>
+        <!--Reads the HTML.
+            Downloads the JavaScript in parallel.
+            Executes it after the HTML is fully parsed.-->
+    </head>
+    <body>
+
+        <main>
+            <!--The main content of the page goes here-->
+
+            <h1>Infinite Tetris</h1>
+
+            <section>
+                <!--The section element is used to group related content together-->
+
+                <div id="game-board">
+                    <!--The gameboard is where the game will be played-->
+
+                </div>
+                
+                <aside>
+                    <!--The aside element is used to display additional information related to the main content-->
+                    <!--SideBar Contains: score,level,lines,preview,start -->
+                    <div class="score">
+                        <h2>Score</h2>
+                        <p id="score">0</p> <!--id's are specifically used for unique elements-->
+                    </div>
+                    <div class="level">
+                        <h2>Level</h2>
+                        <p id="level">1</p>
+                    </div>
+                    <div class="lines">
+                        <h2>Lines</h2>
+                        <p id="lines">0</p>
+                    </div>
+                    <div class="preview">
+                        <h2>Next Piece</h2>
+                        <div id="next-piece"></div>
+                    </div>
+                    <button id="start-button">Start Game</button>
+                </aside>
+            </section>
+        </main>
+    </body>
+</html>
