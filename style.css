@@ -35,11 +35,17 @@ h1{
     gap: 30px;
     flex-direction: row;
 }
-.game-board{
+#game-board{
     flex: 3;
     background-color: rgb(0, 0, 0);
     height: auto;
     min-height: 600px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(10, 30px); /*makes 10 column cells of 30px */
+    grid-template-rows: repeat(20, 30px); /*makes 20 row cells of 30px */
+    justify-content: center;
+    align-content: center;
 }
 .sidebar{
     display: flex;
@@ -50,4 +56,13 @@ h1{
     padding: 20px;
     border-radius: 15px;
     flex-direction: column;
+}
+
+.cell{
+    border: 1px solid #222;
+    width:30px;
+    height:30px;
+}
+.filled{
+    background: cyan;
 }

@@ -5,10 +5,16 @@ console.log(gameboard);
 const cols = 10;
 const rows = 20;
 
-const cells = new Array(rows*cols).fill(0);
-//cells is a 2D array with 20 rows and 10 columns, filled with 0s
+const board = new Array(rows).fill(null).map(() => new Array(cols).fill(0));
+//board is a 2D array with 20 rows and 10 columns, filled with 0s
 //test data
+board[0][0] = 1;
+board[0][1] = 1;
+board[0][2] = 1;
+board[5][4] = 1;
+board[10][5] = 1;
 
+const cells = [];//reference to the cells in the gameboard
 
 function createBoard() {
     gameboard.innerHTML = "";
@@ -17,6 +23,7 @@ function createBoard() {
             const cell = document.createElement("div");
             cell.classList.add("cell");
             gameboard.appendChild(cell);
+            cells.push(cell);//saves the reference to the cell in the cells array
         }
     }
 }
@@ -26,11 +33,16 @@ createBoard();
 function renderBoard() {
     for(let row = 0; row < rows; row++){
         for(let col = 0; col < cols; col++){
-            const cellValue = cells[row * cols + col]; // get the value of the cell
-            const cell = gameboard.children[row * cols + col]; // get the corresponding cell element
+            const cellValue = board[row][col]; // get the value of the cell
+            const index = row * cols + col; // calculate the index of the cell in the cells array
+            const cell = cells[index]; // get the corresponding cell element
             if(cellValue === 1){
                 cell.classList.add("filled");
                 // now the new div element cell has the class "cell filled"
+            }
+            else{
+                cell.classList.remove("filled");
+                // now the new div element cell has the class "cell"
             }
             gameboard.appendChild(cell);
             // new cell div will be added to the gameboard div as a child element
@@ -43,3 +55,4 @@ function renderBoard() {
 
 renderBoard();
 console.log(board);
+console.log(cells);
