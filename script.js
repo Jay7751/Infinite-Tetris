@@ -5,22 +5,29 @@ console.log(gameboard);
 const cols = 10;
 const rows = 20;
 
-const board = new Array(rows).fill(null).map(() => new Array(cols).fill(0));
-//board is a 2D array with 20 rows and 10 columns, filled with 0s
+const cells = new Array(rows*cols).fill(0);
+//cells is a 2D array with 20 rows and 10 columns, filled with 0s
 //test data
-board[0][0] = 1;
-board[0][1] = 1;
-board[0][2] = 1;
 
-function renderBoard() {
-    //clears the gameboard div before rendering the new board
+
+function createBoard() {
     gameboard.innerHTML = "";
     for(let row = 0; row < rows; row++){
         for(let col = 0; col < cols; col++){
-            const cellValue = board[row][col]; // get the value of the cell
             const cell = document.createElement("div");
             cell.classList.add("cell");
-            // now the new div element cell has the class "cell"
+            gameboard.appendChild(cell);
+        }
+    }
+}
+
+createBoard();
+
+function renderBoard() {
+    for(let row = 0; row < rows; row++){
+        for(let col = 0; col < cols; col++){
+            const cellValue = cells[row * cols + col]; // get the value of the cell
+            const cell = gameboard.children[row * cols + col]; // get the corresponding cell element
             if(cellValue === 1){
                 cell.classList.add("filled");
                 // now the new div element cell has the class "cell filled"
