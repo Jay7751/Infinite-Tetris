@@ -10,18 +10,68 @@ const board = new Array(rows).fill(null).map(() => new Array(cols).fill(0));
 
 const cells = [];//reference to the cells in the gameboard
 
+
+
+const tetrominoes = {
+    I: {
+        shape: [
+            [1],
+            [1],
+            [1],
+            [1]
+        ],
+        color: "cyan"
+    },
+    O:{
+        shape: [
+            [1,1],
+            [1,1]
+        ],
+        color: "yellow"
+    },
+    T:{
+        shape: [
+            [0,1,0],
+            [1,1,1]
+        ],
+        color: "purple"
+    },
+    S:{
+        shape: [
+            [0,1,1],
+            [1,1,0]
+        ],
+        color: "green"
+    },
+    Z:{
+        shape: [
+            [1,1,0],
+            [0,1,1]
+        ],
+        color: "red"
+    },
+    J:{
+        shape: [
+            [1,0,0],
+            [1,1,1]
+        ],
+        color: "blue"
+    },
+    L:{
+        shape: [
+            [0,0,1],
+            [1,1,1]
+        ],
+        color: "orange"
+    }
+};
+
 const currentPiece = {
     row: 0,
     col: 4,
-    shape: [
-        [1],
-        [1],
-        [1],
-        [1]
-    ],
-    color: "filled"
+    shape: structuredClone(tetrominoes.I.shape), //deep copy of the shape array
+    color: tetrominoes.I.color
 };
-
 const dropInterval = 300; //time in milliseconds for the piece to drop one row
 
 function createBoard() {
@@ -38,8 +88,8 @@ function createBoard() {
 
 function renderBoard() {
     //for locked blocks
-    for(let row = 0; row < rows; row++){
-        for(let col = 0; col < cols; col++){
+    for(let row = 0;row<rows;row++){
+        for(let col = 0;col<cols;col++){
             const cellValue = board[row][col]; // get the value of the cell
             const index = row * cols + col; // calculate the index of the cell in the cells array
             const cell = cells[index]; // get the corresponding cell element
@@ -48,7 +98,15 @@ function renderBoard() {
                 // now the new div element cell has the class "cell filled"
             }
             else{
-                cell.classList.remove("filled");
+                cell.classList.remove(
+                    "cyan",
+                    "yellow",
+                    "purple",
+                    "green",
+                    "red",
+                    "blue",
+                    "orange"
+                );
                 // now the new div element cell has the class "cell"
             }
             // new cell div will be added to the gameboard div as a child element
@@ -116,8 +174,13 @@ function lockPiece(){
 
 //spawn a new piece at the top of the board
 function spawnPiece(){  
+    const pieces = Object.keys(tetrominoes);
+    const randomKey = pieces[Math.floor(Math.random() * pieces.length)];
+    const piece = tetrominoes[randomKey];
     currentPiece.row = 0;
-    currentPiece.col = 4;
+    currentPiece.col = Math.floor(cols/2)-1;
+    currentPiece.shape = structuredClone(piece.shape);
+    currentPiece.color = piece.color;
 }
 
 document.addEventListener("keydown",handleKeyPress);
