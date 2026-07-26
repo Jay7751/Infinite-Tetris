@@ -120,6 +120,71 @@ function spawnPiece(){
     currentPiece.col = 4;
 }
 
+document.addEventListener("keydown",handleKeyPress);
+function handleKeyPress(event){
+    if(event.key === "ArrowLeft" || event.key === "a"){
+        moveleft();
+    }
+    else if(event.key === "ArrowRight" || event.key === "d"){
+        moveright();
+    }
+    else if(event.key === "ArrowDown" || event.key === "s"){
+        softdrop();
+    }
+}
+
+//check if the current piece can move left, return true if it can, false otherwise
+function canMoveLeft(){
+    for(let shapeRow = 0; shapeRow < currentPiece.shape.length; shapeRow++){
+        for(let shapeCol=0;shapeCol<currentPiece.shape[shapeRow].length;shapeCol++){
+            if(currentPiece.shape[shapeRow][shapeCol] === 0) continue;
+            const nextRow = currentPiece.row + shapeRow;
+            const nextCol = currentPiece.col + shapeCol - 1;
+            if(nextCol < 0 || board[nextRow][nextCol] === 1){
+                return false;
+            }//if the next col is out of bounds or the cell is already filled, return false
+        }
+    }
+    return true;
+}
+
+//check if the current piece can move right, return true if it can, false otherwise
+function canMoveRight(){
+    for(let shapeRow = 0; shapeRow < currentPiece.shape.length; shapeRow++){
+        for(let shapeCol=0;shapeCol<currentPiece.shape[shapeRow].length;shapeCol++){
+            if(currentPiece.shape[shapeRow][shapeCol] === 0) continue;
+            const nextRow = currentPiece.row + shapeRow;
+            const nextCol = currentPiece.col + shapeCol + 1;
+            if(nextCol >= cols || board[nextRow][nextCol] === 1){
+                return false;
+            }//if the next col is out of bounds or the cell is already filled, return false
+        }
+    }
+    return true;
+}
+
+// move the current piece left by one column
+function moveleft(){
+    if(canMoveLeft()){
+        currentPiece.col--;
+        renderBoard();
+    }
+}
+// move the current piece right by one column
+function moveright(){
+    if(canMoveRight()){
+        currentPiece.col++;
+        renderBoard();
+    }
+}
+//move the current piece down by one row
+function softdrop(){
+    if(canMoveDown()){
+        currentPiece.row++;
+        renderBoard();
+    }
+}
+
 createBoard();
 renderBoard();
 
