@@ -30,8 +30,8 @@ const tetrominoes = {
     },
     T:{
         shape: [
-            [0,1,0],
-            [1,1,1]
+            [1,1,1],
+            [0,1,0]
         ],
         color: "purple"
     },
@@ -51,15 +51,17 @@ const tetrominoes = {
     },
     J:{
         shape: [
-            [1,0,0],
-            [1,1,1]
+            [0,1],
+            [0,1],
+            [1,1]
         ],
         color: "blue"
     },
     L:{
         shape: [
-            [0,0,1],
-            [1,1,1]
+            [1,0],
+            [1,0],
+            [1,1]
         ],
         color: "orange"
     }
@@ -97,7 +99,7 @@ function createBoard() {
 }
 
 // RENDERER
-
+//renders the board and the current piece on the gameboard for locked blocks and the current piece
 function renderBoard() {
     //for locked blocks
     for(let row = 0;row<ROWS;row++){
