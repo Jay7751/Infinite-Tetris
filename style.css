@@ -67,3 +67,30 @@ h1{
 .filled{
     background: #00F5FF;
 }
+.cyan{
+    background:#00F5FF;
+}
+
+.yellow{
+    background:#FFD600;
+}
+
+.purple{
+    background:#A020F0;
+}
+
+.green{
+    background:#00C853;
+}
+
+.red{
+    background:#F44336;
+}
+
+.blue{
+    background:#2979FF;
+}
+
+.orange{
+    background:#FF9800;
+}
